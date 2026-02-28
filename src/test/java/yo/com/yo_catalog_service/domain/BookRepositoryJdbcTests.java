@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice.domain;
+package yo.com.yo_catalog_service.domain;
 
 
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import yo.com.yo_catalog_service.config.DataConfig;
-import yo.com.yo_catalog_service.domain.Book;
-import yo.com.yo_catalog_service.domain.BookRepository;
+
 
 
 import java.util.Optional;

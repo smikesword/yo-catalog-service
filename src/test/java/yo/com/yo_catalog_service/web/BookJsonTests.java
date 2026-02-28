@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice.web;
+package yo.com.yo_catalog_service.web;
 
 
 import org.junit.jupiter.api.Test;

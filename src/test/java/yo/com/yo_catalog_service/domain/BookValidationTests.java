@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice.domain;
+package yo.com.yo_catalog_service.domain;
 
 import java.util.List;
 import java.util.Set;
@@ -11,7 +11,7 @@ import jakarta.validation.ValidatorFactory;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import yo.com.yo_catalog_service.domain.Book;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 

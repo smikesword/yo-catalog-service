@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice;
+package yo.com.yo_catalog_service;
 
 
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTest
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import yo.com.yo_catalog_service.domain.Book;
-//import org.springframework.test.web.reactive.server.WebTestClient;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
