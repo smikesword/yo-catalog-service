@@ -39,13 +39,13 @@ public record Book (
         Instant lastModifiedDate,
 
         @Version
-        int version
+        Integer version
 ){
     public static Book of(
             String isbn, String title, String author, Double price, String publisher
     ) {
         return new Book(
-                null, isbn, title, author, price, publisher, null, null,0
+                null, isbn, title, author, price, publisher, null, null,null
         );
     }
 }

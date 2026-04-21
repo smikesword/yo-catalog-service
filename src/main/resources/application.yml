@@ -1,5 +1,6 @@
 server:
   port: 9001
+  shutdown: graceful
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 15s
@@ -10,6 +11,8 @@ server:
 spring:
   application:
     name: yo-catalog-service
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
   config:
     import: "optional:configserver:"
   cloud:
@@ -24,8 +27,8 @@ spring:
         max-interval: 2000 # 2s
         multiplier: 1.1
   datasource:
-    username: user
-    password: password
+    username: test
+    password: test
     url: jdbc:postgresql://localhost:5432/yodb_catalog
     hikari:
       connection-timeout: 2000
