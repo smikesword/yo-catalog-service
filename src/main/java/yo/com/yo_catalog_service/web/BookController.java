@@ -4,9 +4,9 @@ import jakarta.validation.Valid;
 
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
+//import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,15 +35,15 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/me")
-    public List<String> getGretting(JwtAuthenticationToken auth) {
-        return auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
-    }
-
-    @GetMapping("/me/debug")
-    public Map<String, Object> debugToken(JwtAuthenticationToken auth) {
-        return auth.getToken().getClaims();
-    }
+//    @GetMapping("/me")
+//    public List<String> getGretting(JwtAuthenticationToken auth) {
+//        return auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
+//    }
+//
+//    @GetMapping("/me/debug")
+//    public Map<String, Object> debugToken(JwtAuthenticationToken auth) {
+//        return auth.getToken().getClaims();
+//    }
 
     @GetMapping
     public Iterable<Book> get() {
