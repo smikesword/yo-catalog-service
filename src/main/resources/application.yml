@@ -54,8 +54,15 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          transport: grpc
 
-
+logging:
+  pattern:
+    console: '%5p [${spring.application.name},%X{traceId},%X{spanId}] %m%n'
 
 yo:
   greeting: Welcome to the local book catalog!
