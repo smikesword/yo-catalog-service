@@ -60,6 +60,14 @@ management:
         otlp:
           transport: grpc
 
+otel:
+  tracer_provider:
+    processors:
+      - batch:
+          exporter:
+            otlp_grpc:
+              endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4317}
+
 logging:
   pattern:
     console: '%5p [${spring.application.name},%X{traceId},%X{spanId}] %m%n'
