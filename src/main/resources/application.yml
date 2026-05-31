@@ -54,19 +54,19 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-  opentelemetry:
-    tracing:
-      export:
-        otlp:
-          transport: grpc
+#  opentelemetry:
+#    tracing:
+#      export:
+#        otlp:
+#          transport: grpc
 
-otel:
-  tracer_provider:
-    processors:
-      - batch:
-          exporter:
-            otlp_grpc:
-              endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4317}
+#otel:
+#  tracer_provider:
+#    processors:
+#      - batch:
+#          exporter:
+#            otlp_grpc:
+#              endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4317}
 
 logging:
   pattern:

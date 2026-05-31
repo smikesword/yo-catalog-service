@@ -46,11 +46,12 @@ dependencies {
     implementation 'org.flywaydb:flyway-database-postgresql'
 //    implementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
+//    implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
 
 
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    runtimeOnly 'io.opentelemetry.javaagent:opentelemetry-javaagent:2.27.0'
 
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
