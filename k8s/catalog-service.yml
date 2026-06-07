@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: catalog-service
+  name: catalog-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: catalog-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "9001"
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: postgres:alpine
+          command: ['sh', '-c', 'pg_isready -h yo-catalog-db-rw -p 5432']
+      containers:
+        - image: ghcr.io/smikesword/yo-catalog-service:latest
+          name: yo-catalog-service
+          ports:
+            - containerPort: 9001
+          env:
+            - name: BPL_JVM_THREAD_COUNT
+              value: "50"
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://yo-catalog-db-rw:5432/yodb_catalog
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: yo-catalog-db-app
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: yo-catalog-db-app
+                  key: password
+            - name: SPRING_PROFILES_ACTIVE
+              value: testdata
+          volumeMounts:
+            - name: catalog-config-volume
+              mountPath: /workspace/config
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 9001
+            initialDelaySeconds: 10
+            periodSeconds: 300
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 9001
+            initialDelaySeconds: 5
+            periodSeconds: 30
+      volumes:
+        - name: catalog-config-volume
+          configMap:
+            name: catalog-config
+      resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: catalog-service
+  name: catalog-service
+spec:
+  ports:
+    - port: 9001
+      protocol: TCP
+      targetPort: 9001
+  selector:
+    app: catalog-service
+status:
+  loadBalancer: {}
